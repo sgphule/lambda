@@ -8,5 +8,6 @@ public class Greeter {
 		Greeter greeter = new Greeter();
 		HelloWorldGreeting helloWorldGreeting = new HelloWorldGreeting();
 		greeter.greet(helloWorldGreeting);
+		Greeting myLambdaFunction = () -> System.out.print("Hello world");
 	}
 }
