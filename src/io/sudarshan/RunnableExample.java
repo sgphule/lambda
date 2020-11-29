@@ -8,7 +8,6 @@ public class RunnableExample {
 			@Override
 			public void run() {
 				System.out.println("Printed Inside Runnable");
-				
 			}
 		});
 		myThread.run();
