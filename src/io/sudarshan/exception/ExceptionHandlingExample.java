@@ -16,7 +16,9 @@ public class ExceptionHandlingExample {
 		}
 	}
 	private static BiConsumer<Integer, Integer> wrapperLambda(BiConsumer<Integer, Integer> consumer) {
-		return (v, k)-> System.out.println(v + k);
+		return (v, k)-> {
+			consumer.accept(v, k);
+		};
 	}
 
 }
