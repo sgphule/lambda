@@ -6,7 +6,7 @@ public class ExceptionHandlingExample {
 
 	public static void main(String[] args) {
 		int [] someNumbers = {1, 2, 3, 4};
-		int key = 2;
+		int key = 0;
 		process(someNumbers, key, wrapperLambda((v,k) -> System.out.println(v/k)));
 	}
 
@@ -17,7 +17,13 @@ public class ExceptionHandlingExample {
 	}
 	private static BiConsumer<Integer, Integer> wrapperLambda(BiConsumer<Integer, Integer> consumer) {
 		return (v, k)-> {
-			consumer.accept(v, k);
+			//System.out.println("Executing from wrapper");
+			try {
+				consumer.accept(v, k);	
+			}
+			catch(ArithmeticException e) {
+				System.out.println("Exception caught in wrapper lambda");
+			}
 		};
 	}
 
