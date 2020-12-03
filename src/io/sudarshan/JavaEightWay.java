@@ -2,8 +2,8 @@ package io.sudarshan;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 public class JavaEightWay {
@@ -17,23 +17,23 @@ public class JavaEightWay {
 			new Person("www", "Ssl", 19)
 			);
 			//Sort list by last name
-			Collections.sort(people, (p1, p2) -> p1.getLastName().compareTo(p2.getLastName()));			
-			//Create a method to print all elements in the list
-			System.out.println("\nPrinting list with all elements sorted:");
-			printConditionally(people, p-> true);
+			Collections.sort(people, (p1, p2) -> p1.getLastName().compareTo(p2.getLastName()));	
 			
-			//	Create a method to print all people that have last name beginning with P
-			//printLastNameBeginningWithP(people);
+			//Method to print all elements in the list
+			System.out.println("\nPrinting list with all elements sorted:");
+			performConditionally(people, p-> true, p -> System.out.println(p));
+			
+			//Method to print all people that have last name beginning with P
 			System.out.println("\nPrinting list for Last name starting with P");
-			printConditionally(people, p -> p.getLastName().startsWith("P"));
+			performConditionally(people, p -> p.getLastName().startsWith("P"), p -> System.out.println(p));
 			
 			System.out.println("\nPrinting list for First name starting with S");
-			printConditionally(people,p -> p.getFirstName().startsWith("S"));
+			performConditionally(people,p -> p.getFirstName().startsWith("S"), p -> System.out.println(p.getFirstName()));
 	}
-	private static void printConditionally(List<Person> people, Predicate<Person> predicate) {
+	private static void performConditionally(List<Person> people, Predicate<Person> predicate, Consumer<Person> consumer) {
 		for(Person p : people) {
 			if(predicate.test(p)) {
-				System.out.println(p);
+				consumer.accept(p);
 			}
 		}
 	}
